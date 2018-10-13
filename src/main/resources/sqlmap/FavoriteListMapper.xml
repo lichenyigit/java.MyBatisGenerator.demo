@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="myBatisGenerator.demo.dao.FavoriteListMapper">
+  <resultMap id="BaseResultMap" type="myBatisGenerator.demo.domain.FavoriteList">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="relation_model_url" jdbcType="VARCHAR" property="relationModelUrl" />
+    <result column="scale_x" jdbcType="REAL" property="scaleX" />
+    <result column="scale_y" jdbcType="REAL" property="scaleY" />
+    <result column="scale_z" jdbcType="REAL" property="scaleZ" />
+    <result column="active" jdbcType="INTEGER" property="active" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="myBatisGenerator.demo.domain.FavoriteList">
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, avatar, user_name, relation_model_url, scale_x, scale_y, scale_z, active
+  </sql>
+  <sql id="Blob_Column_List">
+    description
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="myBatisGenerator.demo.domain.FavoriteListExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from favorite_list
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="myBatisGenerator.demo.domain.FavoriteListExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from favorite_list
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="myBatisGenerator.demo.domain.FavoriteListExample">
+    delete from favorite_list
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="myBatisGenerator.demo.domain.FavoriteList">
+    insert into favorite_list (id, avatar, user_name, 
+      relation_model_url, scale_x, scale_y, 
+      scale_z, active, description
+      )
+    values (#{id,jdbcType=INTEGER}, #{avatar,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{relationModelUrl,jdbcType=VARCHAR}, #{scaleX,jdbcType=REAL}, #{scaleY,jdbcType=REAL}, 
+      #{scaleZ,jdbcType=REAL}, #{active,jdbcType=INTEGER}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="myBatisGenerator.demo.domain.FavoriteList">
+    insert into favorite_list
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="relationModelUrl != null">
+        relation_model_url,
+      </if>
+      <if test="scaleX != null">
+        scale_x,
+      </if>
+      <if test="scaleY != null">
+        scale_y,
+      </if>
+      <if test="scaleZ != null">
+        scale_z,
+      </if>
+      <if test="active != null">
+        active,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="relationModelUrl != null">
+        #{relationModelUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="scaleX != null">
+        #{scaleX,jdbcType=REAL},
+      </if>
+      <if test="scaleY != null">
+        #{scaleY,jdbcType=REAL},
+      </if>
+      <if test="scaleZ != null">
+        #{scaleZ,jdbcType=REAL},
+      </if>
+      <if test="active != null">
+        #{active,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="myBatisGenerator.demo.domain.FavoriteListExample" resultType="java.lang.Long">
+    select count(*) from favorite_list
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update favorite_list
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.avatar != null">
+        avatar = #{record.avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userName != null">
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationModelUrl != null">
+        relation_model_url = #{record.relationModelUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scaleX != null">
+        scale_x = #{record.scaleX,jdbcType=REAL},
+      </if>
+      <if test="record.scaleY != null">
+        scale_y = #{record.scaleY,jdbcType=REAL},
+      </if>
+      <if test="record.scaleZ != null">
+        scale_z = #{record.scaleZ,jdbcType=REAL},
+      </if>
+      <if test="record.active != null">
+        active = #{record.active,jdbcType=INTEGER},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update favorite_list
+    set id = #{record.id,jdbcType=INTEGER},
+      avatar = #{record.avatar,jdbcType=VARCHAR},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      relation_model_url = #{record.relationModelUrl,jdbcType=VARCHAR},
+      scale_x = #{record.scaleX,jdbcType=REAL},
+      scale_y = #{record.scaleY,jdbcType=REAL},
+      scale_z = #{record.scaleZ,jdbcType=REAL},
+      active = #{record.active,jdbcType=INTEGER},
+      description = #{record.description,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update favorite_list
+    set id = #{record.id,jdbcType=INTEGER},
+      avatar = #{record.avatar,jdbcType=VARCHAR},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      relation_model_url = #{record.relationModelUrl,jdbcType=VARCHAR},
+      scale_x = #{record.scaleX,jdbcType=REAL},
+      scale_y = #{record.scaleY,jdbcType=REAL},
+      scale_z = #{record.scaleZ,jdbcType=REAL},
+      active = #{record.active,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

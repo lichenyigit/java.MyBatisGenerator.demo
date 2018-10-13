@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <!--MySQL连接驱动 注意：要是决定路径-->
+    <classPathEntry location="E:\maven_repository\mysql\mysql-connector-java\6.0.6\mysql-connector-java-6.0.6.jar"/>
+
+    <!--数据库链接URL，用户名、密码 -->
+    <context id="arseeu" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://gofbox.com:3306/arseeu"
+                        userId="root2"
+                        password="Xqm2328549@">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 生成的模型对象放到myBatisGenerator.demo.model下 -->
+        <javaModelGenerator targetPackage="myBatisGenerator.demo.domain" targetProject="src/main/java/">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/><!-- 任何String属性的setter将调用trim 函数 -->
+        </javaModelGenerator>
+
+        <!-- 生成sqlmap -->
+        <sqlMapGenerator targetPackage="sqlmap" targetProject="src/main/resources/">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 生成dao -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="myBatisGenerator.demo.dao" targetProject="src/main/java/">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <table schema="DB2ADMIN" tableName="favorite_list" domainObjectName="FavoriteList">
+            <property name="useActualColumnNames" value="false"/><!-- 如果此属性设置为 false（或未指定），则MBG将尝试骆驼列名称。无论哪种情况，名称都可以由<columnOverride> 元素覆盖 -->
+            <!--<generatedKey column="ID" sqlStatement="DB2" identity="true" /> -->
+            <!-- <columnOverride column="create_time" property="startDate" />将create_time对应的属性值改为startDate -->
+            <!-- <ignoreColumn column="time_rule" /> 将time_rule字段忽略 -->
+
+            <!-- 无论实际的数据类型如何，LONG_VARCHAR_FIELD列都将被视为 VARCHAR字段 -->
+            <!--<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR"/>-->
+            <!--<columnOverride column="scale_x" jdbcType="FLOAT"/>-->
+        </table>
+
+    </context>
+</generatorConfiguration>
