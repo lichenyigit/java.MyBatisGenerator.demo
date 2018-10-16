@@ -55,11 +55,7 @@
                 <executions>
                     <execution>
                         <id>Generate MyBatis Artifacts</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
                         <configuration>
-                            <verbose>true</verbose>
                             <overwrite>true</overwrite>
                         </configuration>
                     </execution>
